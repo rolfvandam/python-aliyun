@@ -72,7 +72,7 @@ class EcsConnection(Connection):
         resp = self.get({'Action': 'DescribeRegions'})
         regions = []
         for region in resp['Regions']['Region']:
-            regions.append(Region(region['RegionId'], region['LocalName']))
+            regions.append(Region(region['RegionId'], unicode(region['LocalName'], errors='ignore')))
         return regions
 
     def get_all_region_ids(self):
